@@ -17,22 +17,33 @@ defmodule MapToXml do
     |> generate()
   end
 
-  defp build_tag(key, %{} = value) do
-    sub_keys = Map.keys(value)
+  defp build_tag(key, value, attributes \\ %{})
 
-    sub_elements =
-      for sub_key <- sub_keys do
-        build_tag(sub_key, value[sub_key])
-      end
+  defp build_tag(key, %{} = map, attributes) do
+    keys = Map.keys(map)
 
-    element(key, sub_elements)
+    if Enum.member?(keys, "#content") do
+      attributes =
+        for key <- keys, String.slice(key, 0, 1) == "-", into: %{} do
+          {String.slice(key, 1..-1), map[key]}
+        end
+
+      build_tag(key, map["#content"], attributes)
+    else
+      tags =
+        for key <- keys do
+          build_tag(key, map[key])
+        end
+
+      element(key, attributes, tags)
+    end
   end
 
-  defp build_tag(key, [_ | _] = values) do
-    for value <- values, do: build_tag(key, value)
+  defp build_tag(key, [_ | _] = values, attributes) do
+    for value <- values, do: build_tag(key, value, attributes)
   end
 
-  defp build_tag(key, value) do
-    element(key, "#{value}")
+  defp build_tag(key, value, attributes) do
+    element(key, attributes, "#{value}")
   end
 end
