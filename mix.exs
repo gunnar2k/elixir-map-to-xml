@@ -7,12 +7,21 @@ defmodule MapToXml.MixProject do
       version: "0.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
+      package: package(),
       deps: deps(),
       description: "Convert an Elixir map to an XML document",
       name: "MapToXml",
       docs: [
         main: "MapToXml"
       ]
+    ]
+  end
+
+  def package do
+    [
+      maintainers: ["Gunnar Fornes"],
+      licenses: ["MIT"],
+      links: %{"Github" => "https://github.com/gunnar2k/elixir-map-to-xml"}
     ]
   end
 
