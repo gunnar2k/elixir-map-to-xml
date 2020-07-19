@@ -1,6 +1,16 @@
 defmodule MapToXml do
   @moduledoc """
   Documentation for `MapToXml`.
+
+  ## Installation
+
+  ```elixir
+  def deps do
+    [
+      {:elixir_map_to_xml, "~> 0.1.0"}
+    ]
+  end
+  ```
   """
   import XmlBuilder
 
