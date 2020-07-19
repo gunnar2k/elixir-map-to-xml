@@ -111,4 +111,4 @@ will output:
 <Tag1 id="123" something="111">some value</Tag1>
 ```
 
-See [tests](test/elixir_map_to_xml_test.exs) for some more examples.
+See [tests](test/map_to_xml_test.exs) for some more examples.
