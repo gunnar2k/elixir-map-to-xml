@@ -1,6 +1,6 @@
 # MapToXml
 
-Converts an Elixir map to an XML document.
+Converts an Elixir map to an XML document. Inspired by [XmlToMap](https://github.com/homanchou/elixir-xml-to-map).
 
 ## Examples
 
